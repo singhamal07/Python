@@ -4,7 +4,7 @@ class Solution:
         rank = [0] * n
         def find(x):
             while parent[x] != x:
-                parent[x] = parent[parent[x]]  # path compression (halving)
+                parent[x] = parent[parent[x]]
                 x = parent[x]
             return x
         def union(x, y):
