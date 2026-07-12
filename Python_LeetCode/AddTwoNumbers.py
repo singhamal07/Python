@@ -3,7 +3,6 @@ class Solution:
     dummy = ListNode(0)
     current = dummy
     carry = 0
-
     while carry or l1 or l2:
       if l1:
         carry += l1.val
@@ -14,5 +13,4 @@ class Solution:
       current.next = ListNode(carry % 10)
       carry //= 10
       current = current.next
-
     return dummy.next
