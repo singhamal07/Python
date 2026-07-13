@@ -1,11 +1,7 @@
-from typing import List
-
-
 class Solution:
     def checkSubarraySum(self, nums: List[int], k: int) -> bool:
-        seen = {0: -1}  # prefix_mod -> index
+        seen = {0: -1}
         prefix = 0
-
         for i, num in enumerate(nums):
             prefix = (prefix + num) % k
             if prefix in seen:
@@ -13,5 +9,4 @@ class Solution:
                     return True
             else:
                 seen[prefix] = i
-
         return False
