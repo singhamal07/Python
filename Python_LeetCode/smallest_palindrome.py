@@ -1,13 +1,15 @@
-from collections import Counter
-from typing import List
 class Solution:
-    def smallestPalindrome(self, s: str) -> str:
-        count = Counter(s)
-        half = []
-        middle = ""
-        for ch in sorted(count.keys()):
-            if count[ch] % 2 == 1:
-                middle = ch
-            half.extend([ch] * (count[ch] // 2))
-        half_str = "".join(half)
-        return half_str + middle + half_str[::-1]
+    def shortestPalindrome(self, s: str) -> str:
+        if not s:
+            return s
+        t = s + "#" + s[::-1]
+        fail = [0] * len(t)
+        j = 0
+        for i in range(1, len(t)):
+            while j > 0 and t[i] != t[j]:
+                j = fail[j - 1]
+            if t[i] == t[j]:
+                j += 1
+            fail[i] = j
+        longest_prefix = fail[-1]
+        return s[longest_prefix:][::-1] + s
